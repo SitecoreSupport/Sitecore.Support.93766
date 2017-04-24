@@ -179,13 +179,12 @@ namespace Sitecore.Support.Shell.Controls.RichTextEditor.InsertLink
                         Item item2 = this.InternalLinkDataContext.GetDatabase().GetItem(queryString);
                         if ((item2 != null) && item2.Paths.IsMediaItem)
                             this.MediaTab.Active = true;
-                        try
+                        Item item = Client.ContentDatabase.GetItem("/sitecore/content");
+                        if(item != null)
                         {
-                            Item item = Client.ContentDatabase.GetItem("/sitecore/content");
                             if (item2.Name == "__Standard Values")
                                 InternalLinkDataContext.Folder = item.ID.ToString();
                         }
-                        catch (Exception) { }
                     }
                     this.SetUploadButtonAvailability();
                 }
